@@ -1,0 +1,13 @@
+the interface that contracts must include must implement 
+
+*some sort of custom action dispatcher. all action calls coming from the keyaccounts contract must be intercepted
+*this custom dispatcher reads the transaction and figures out with which publickey the kaction is authenticated.
+*if the dapp contract knows the publickey it can be handled as account identifier similar to an accountname
+
+An other option would be to have a custom action in the dapp contract that functions as dispatcher and has the publickey in it's action args together with the kaction.
+Because this custom action must require_auth from the keyaccounts contract the dapp contract can be sure the publickey can be trusted.
+the dapp contract can then execute the payload action on it's own
+
+sadly there will be collisions if a publikey is converted to uint64_t/name. so the dapp contract must have a subaccount system. 
+
+
